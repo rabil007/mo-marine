@@ -28,4 +28,8 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('admin/publications/(:num)/edit', 'Admin\Publications::edit/$1');
     $routes->post('admin/publications/(:num)', 'Admin\Publications::update/$1');
     $routes->post('admin/publications/(:num)/delete', 'Admin\Publications::delete/$1');
+
+    $routes->get('admin/profile', 'Admin\Profile::index');
+    $routes->post('admin/profile', 'Admin\Profile::update');
+    $routes->post('admin/profile/password', 'Admin\Profile::changePassword');
 });

@@ -149,21 +149,19 @@ $navModules  = [
             <span class="material-symbols-outlined text-[18px] text-white/25">language</span>
             View Website
         </a>
-        <div class="flex items-center gap-3 px-3 py-2.5 mt-1">
-            <div class="avatar w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+        <a href="<?= site_url('admin/profile') ?>"
+           class="flex items-center gap-3 px-3 py-2.5 mt-1 rounded-xl hover:bg-white/5 transition-all group">
+            <div class="avatar w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 group-hover:shadow-lg group-hover:shadow-sky-500/20 transition-all">
                 <?= $adminInitial ?>
             </div>
             <div class="min-w-0 flex-1">
-                <p class="text-white/80 text-[12px] font-medium truncate"><?= esc($adminName) ?></p>
+                <p class="text-white/70 group-hover:text-white text-[12px] font-medium truncate transition-colors"><?= esc($adminName) ?></p>
                 <?php if ($adminEmail): ?>
-                <p class="text-white/30 text-[10px] truncate"><?= esc($adminEmail) ?></p>
+                <p class="text-white/25 text-[10px] truncate"><?= esc($adminEmail) ?></p>
                 <?php endif; ?>
             </div>
-            <a href="<?= site_url('logout') ?>" title="Logout"
-               class="text-white/25 hover:text-red-400 transition-colors flex-shrink-0">
-                <span class="material-symbols-outlined text-[18px]">logout</span>
-            </a>
-        </div>
+            <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 text-[15px] flex-shrink-0 transition-colors">edit</span>
+        </a>
     </div>
 </aside>
 
