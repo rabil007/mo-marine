@@ -113,6 +113,26 @@
             </div>
         </div>
 
+        <div class="bg-navy-900 rounded-xl border border-white/10 p-6 mb-6">
+            <h2 class="font-display font-bold text-white mb-5 flex items-center gap-2">
+                <span class="material-symbols-outlined text-maritime-500 text-[20px]">picture_as_pdf</span>
+                Content Management
+            </h2>
+            <a href="<?= site_url('admin/publications') ?>"
+               class="flex items-center justify-between bg-navy-800 hover:bg-navy-700 border border-white/5 hover:border-maritime-500/30 rounded-xl p-5 transition-all group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-maritime-500/10 group-hover:bg-maritime-500/20 rounded-lg flex items-center justify-center transition-colors">
+                        <span class="material-symbols-outlined text-maritime-500 text-[24px]">picture_as_pdf</span>
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold text-sm">Publications</p>
+                        <p class="text-navy-400 text-xs mt-0.5">Upload & manage downloadable PDF publications</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-navy-500 group-hover:text-white transition-colors">arrow_forward</span>
+            </a>
+        </div>
+
         <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
             <h2 class="font-display font-bold text-white mb-5 flex items-center gap-2">
                 <span class="material-symbols-outlined text-maritime-500 text-[20px]">info</span>

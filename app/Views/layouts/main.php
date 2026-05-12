@@ -54,7 +54,7 @@
     </noscript>
 
     <div id="navbar-placeholder"></div>
-    <script src="assets/js/navbar.js" defer></script>
+    <script src="assets/js/navbar.js?v=2" defer></script>
 
     <main id="main-content">
         <?= $this->renderSection('content') ?>

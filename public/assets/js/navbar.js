@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         contact: resolvePath('contact'),
         technical: resolvePath('technical'),
         logistics: resolvePath('logistics'),
-        publicationsChecklist: resolvePath('assets/pdf/M_O_Monthly_Publications_Check_List_for_Med_Black_Red_Sea.pdf'),
-        publicationsIndex: resolvePath('assets/pdf/M_O_Publications_Index_Worldwide_Coverage.pdf'),
     };
 
     const currentPath = normalizePath(window.location.pathname);
@@ -49,22 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="${routes.services}" class="text-white/${isServices ? '90' : '60'} hover:text-white text-sm font-medium tracking-wide transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-white after:scale-x-${isServices ? '100' : '0'} hover:after:scale-x-100 after:transition-transform after:origin-left">Services</a>
                 <a href="${routes.faq}" class="text-white/${isFAQ ? '90' : '60'} hover:text-white text-sm font-medium tracking-wide transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-white after:scale-x-${isFAQ ? '100' : '0'} hover:after:scale-x-100 after:transition-transform after:origin-left">FAQ</a>
                 <a href="${routes.contact}" class="text-white/${isContact ? '90' : '60'} hover:text-white text-sm font-medium tracking-wide transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-white after:scale-x-${isContact ? '100' : '0'} hover:after:scale-x-100 after:transition-transform after:origin-left">Contact</a>
-                <div class="relative group">
+                <div class="relative group" id="pub-dropdown-desktop">
                     <button class="text-white/60 hover:text-white text-sm font-medium tracking-wide transition-colors flex items-center gap-1 relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left focus:outline-none" aria-haspopup="true" aria-expanded="false">
                         Publications Index
                         <span class="material-symbols-outlined text-[16px]">expand_more</span>
                     </button>
                     <div class="absolute top-full left-0 w-full h-4"></div>
                     <div class="absolute top-[calc(100%+0.5rem)] -left-4 w-[280px] bg-navy-950/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform origin-top -translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0">
-                        <div class="p-2 flex flex-col gap-1">
-                            <a href="${routes.publicationsChecklist}" target="_blank" class="flex items-start gap-3 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-md transition-colors group/item">
-                                <span class="material-symbols-outlined text-[20px] text-maritime-500 group-hover/item:text-white transition-colors">picture_as_pdf</span>
-                                <span class="leading-snug">Monthly Checklist<br/><span class="text-[11px] text-white/40 group-hover/item:text-white/60 transition-colors">Med, Black, Red Sea</span></span>
-                            </a>
-                            <a href="${routes.publicationsIndex}" target="_blank" class="flex items-start gap-3 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-md transition-colors group/item">
-                                <span class="material-symbols-outlined text-[20px] text-maritime-500 group-hover/item:text-white transition-colors">picture_as_pdf</span>
-                                <span class="leading-snug">Publications Index<br/><span class="text-[11px] text-white/40 group-hover/item:text-white/60 transition-colors">Worldwide Coverage</span></span>
-                            </a>
+                        <div id="pub-list-desktop" class="p-2 flex flex-col gap-1">
+                            <span class="text-navy-500 text-xs px-4 py-2">Loading...</span>
                         </div>
                     </div>
                 </div>
@@ -99,14 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="material-symbols-outlined">expand_more</span>
                     </button>
                     <div id="mobile-pubs" class="hidden flex-col gap-4 mt-4 pl-4 border-l-2 border-maritime-500/30">
-                        <a href="${routes.publicationsChecklist}" target="_blank" class="flex items-start gap-3 text-white/60 hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-[20px] text-maritime-500 mt-0.5">picture_as_pdf</span>
-                            <span class="leading-tight text-sm">Monthly Checklist<br/><span class="text-[11px] text-white/40">Med, Black, Red Sea</span></span>
-                        </a>
-                        <a href="${routes.publicationsIndex}" target="_blank" class="flex items-start gap-3 text-white/60 hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-[20px] text-maritime-500 mt-0.5">picture_as_pdf</span>
-                            <span class="leading-tight text-sm">Publications Index<br/><span class="text-[11px] text-white/40">Worldwide Coverage</span></span>
-                        </a>
+                        <div id="pub-list-mobile">
+                            <span class="text-navy-500 text-xs">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,4 +158,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
+
+    const apiBase = new URL('api/publications', document.baseURI).toString();
+    const cacheKey = 'mo_publications_v1';
+
+    function renderPublications(pubs) {
+        const desktopHtml = pubs.length
+            ? pubs.map(p => `
+                <a href="${p.url}" target="_blank" rel="noopener" class="flex items-start gap-3 px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-md transition-colors group/item">
+                    <span class="material-symbols-outlined text-[20px] text-maritime-500 group-hover/item:text-white transition-colors">picture_as_pdf</span>
+                    <span class="leading-snug">${p.title}<br/><span class="text-[11px] text-white/40 group-hover/item:text-white/60 transition-colors">${p.subtitle || ''}</span></span>
+                </a>`).join('')
+            : '<span class="text-navy-500 text-xs px-4 py-2">No publications available.</span>';
+
+        const mobileHtml = pubs.length
+            ? pubs.map(p => `
+                <a href="${p.url}" target="_blank" rel="noopener" class="flex items-start gap-3 text-white/60 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-[20px] text-maritime-500 mt-0.5">picture_as_pdf</span>
+                    <span class="leading-tight text-sm">${p.title}<br/><span class="text-[11px] text-white/40">${p.subtitle || ''}</span></span>
+                </a>`).join('')
+            : '<span class="text-navy-500 text-xs">No publications available.</span>';
+
+        const desktopEl = document.getElementById('pub-list-desktop');
+        const mobileEl  = document.getElementById('pub-list-mobile');
+        if (desktopEl) desktopEl.innerHTML = desktopHtml;
+        if (mobileEl)  mobileEl.innerHTML  = mobileHtml;
+    }
+
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+        try { renderPublications(JSON.parse(cached)); } catch (_) {}
+    }
+
+    fetch(apiBase)
+        .then(r => r.json())
+        .then(data => {
+            sessionStorage.setItem(cacheKey, JSON.stringify(data));
+            renderPublications(data);
+        })
+        .catch(() => {});
 });

@@ -264,6 +264,40 @@
                 </div>
             </div>
 
+            <!-- Publications Downloads -->
+            <?php if (! empty($publications)): ?>
+            <div class="mt-10">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <p class="text-sm font-bold tracking-widest text-maritime-500 uppercase mb-1 flex items-center gap-2">
+                            <span class="w-6 h-px bg-maritime-500"></span> Downloads
+                        </p>
+                        <h3 class="font-display text-2xl font-bold text-navy-900">Publication Index</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <?php foreach ($publications as $pub): ?>
+                    <a href="<?= base_url($pub['file_path']) ?>" target="_blank" rel="noopener"
+                       class="group flex items-start gap-4 bg-white border border-navy-100 rounded-xl p-5 hover:border-maritime-500/40 hover:shadow-lg transition-all duration-300">
+                        <div class="flex-shrink-0 w-12 h-12 bg-maritime-500/10 rounded-lg flex items-center justify-center group-hover:bg-maritime-500 transition-colors duration-300">
+                            <span class="material-symbols-outlined text-maritime-500 group-hover:text-white text-[24px] transition-colors duration-300">picture_as_pdf</span>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="font-semibold text-navy-900 text-sm leading-snug group-hover:text-maritime-500 transition-colors"><?= esc($pub['title']) ?></p>
+                            <?php if ($pub['subtitle']): ?>
+                            <p class="text-navy-500 text-xs mt-0.5"><?= esc($pub['subtitle']) ?></p>
+                            <?php endif; ?>
+                            <p class="text-navy-400 text-xs mt-2 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px]">download</span>
+                                Download PDF
+                            </p>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif; ?>
+
             <!-- Operational Capabilities -->
             <div class="bg-navy-50 rounded-xl p-6 md:p-10 text-center border border-navy-100">
                 <h3 class="font-display text-2xl font-bold text-navy-900 mb-8">Our Operational Capabilities</h3>
