@@ -12,6 +12,7 @@ $routes->get('technical', 'Technical::index', ['as' => 'technical']);
 $routes->get('logistics', 'Logistics::index', ['as' => 'logistics']);
 $routes->get('faq', 'Faq::index', ['as' => 'faq']);
 $routes->get('contact', 'Contact::index', ['as' => 'contact']);
+$routes->post('contact/submit', 'Contact::submit');
 
 $routes->get('login', 'Auth::login', ['as' => 'login']);
 $routes->post('login', 'Auth::attemptLogin');
@@ -39,4 +40,9 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('admin/faqs/(:num)/edit', 'Admin\Faqs::edit/$1');
     $routes->post('admin/faqs/(:num)', 'Admin\Faqs::update/$1');
     $routes->post('admin/faqs/(:num)/delete', 'Admin\Faqs::delete/$1');
+
+    $routes->get('admin/contacts', 'Admin\Contacts::index');
+    $routes->get('admin/contacts/(:num)', 'Admin\Contacts::show/$1');
+    $routes->post('admin/contacts/(:num)/status', 'Admin\Contacts::updateStatus/$1');
+    $routes->post('admin/contacts/(:num)/delete', 'Admin\Contacts::delete/$1');
 });

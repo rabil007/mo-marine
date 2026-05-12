@@ -87,6 +87,33 @@
         .scrollbar-thin::-webkit-scrollbar { width: 4px; }
         .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
         .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .admin-input {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            width: 100%;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .admin-input:focus {
+            border-color: rgba(14,165,233,0.5);
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.1);
+            outline: none;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
     </style>
     <?= $this->renderSection('head_extra') ?>
 </head>
@@ -96,11 +123,13 @@
 $adminName   = session()->get('admin_name') ?? 'Admin';
 $adminEmail  = session()->get('admin_email') ?? '';
 $adminInitial = strtoupper(substr($adminName, 0, 1));
-$currentPath = '/' . ltrim(service('request')->getPath(), '/');
+$currentPath    = '/' . ltrim(service('request')->getPath(), '/');
+$newContactCount = (new \App\Models\ContactModel())->countByStatus('new');
 $navModules  = [
     ['label' => 'Dashboard',    'url' => site_url('dashboard'),          'icon' => 'dashboard',      'match' => '/dashboard'],
     ['label' => 'Publications', 'url' => site_url('admin/publications'),  'icon' => 'picture_as_pdf', 'match' => '/admin/publications'],
-    ['label' => 'FAQs',        'url' => site_url('admin/faqs'),          'icon' => 'help',           'match' => '/admin/faqs'],
+    ['label' => 'FAQs',         'url' => site_url('admin/faqs'),          'icon' => 'help',           'match' => '/admin/faqs'],
+    ['label' => 'Contacts',     'url' => site_url('admin/contacts'),      'icon' => 'inbox',          'match' => '/admin/contacts'],
 ];
 ?>
 
@@ -136,6 +165,8 @@ $navModules  = [
                     <?= $mod['label'] ?>
                     <?php if ($active): ?>
                     <span class="ml-auto w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                    <?php elseif ($mod['match'] === '/admin/contacts' && $newContactCount > 0): ?>
+                    <span class="ml-auto text-[10px] font-bold bg-red-500 text-white rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1"><?= $newContactCount ?></span>
                     <?php endif; ?>
                 </a>
             </li>

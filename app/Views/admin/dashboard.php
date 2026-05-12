@@ -56,16 +56,20 @@
         <p class="text-white/30 text-xs mt-2">Active PDFs · <?= $faq_count ?> FAQs</p>
     </div>
 
-    <div class="stat-card rounded-2xl p-5">
+    <a href="<?= site_url('admin/contacts') ?>" class="stat-card rounded-2xl p-5 block">
         <div class="flex items-start justify-between mb-5">
-            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">Status</p>
-            <div class="stat-icon-status w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                <span class="material-symbols-outlined text-white text-[18px]">check_circle</span>
+            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">Messages</p>
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">
+                <span class="material-symbols-outlined text-white text-[18px]">inbox</span>
             </div>
         </div>
-        <p class="font-display text-[28px] font-bold text-emerald-400 leading-none">Live</p>
-        <p class="text-white/30 text-xs mt-2">All routes responding</p>
-    </div>
+        <p class="font-display text-[34px] font-bold <?= $contact_new > 0 ? 'text-red-400' : 'text-white' ?> leading-none">
+            <?= $contact_new > 0 ? $contact_new : $contact_total ?>
+        </p>
+        <p class="text-white/30 text-xs mt-2">
+            <?= $contact_new > 0 ? 'Unread · ' . $contact_total . ' total' : 'Total submissions' ?>
+        </p>
+    </a>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
@@ -100,6 +104,21 @@
                     <p class="text-white/35 text-xs mt-0.5 truncate">Manage questions & answers</p>
                 </div>
                 <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors ml-auto flex-shrink-0 text-[18px]">arrow_forward</span>
+            </a>
+
+            <a href="<?= site_url('admin/contacts') ?>" class="module-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 relative"
+                     style="background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.05))">
+                    <span class="material-symbols-outlined text-sky-400 text-[22px]">inbox</span>
+                    <?php if ($contact_new > 0): ?>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center"><?= $contact_new ?></span>
+                    <?php endif; ?>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-white font-semibold text-sm">Contact Submissions</p>
+                    <p class="text-white/35 text-xs mt-0.5"><?= $contact_new > 0 ? $contact_new . ' unread message' . ($contact_new > 1 ? 's' : '') : 'View all submissions' ?></p>
+                </div>
+                <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors flex-shrink-0 text-[18px]">arrow_forward</span>
             </a>
         </div>
     </div>

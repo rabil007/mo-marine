@@ -133,7 +133,7 @@
                 </div>
 
                 <!-- Form -->
-                <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl shadow-navy-900/5 border border-navy-100 opacity-0 animate-fade-in-up stagger-3">
+                <div id="contact-form" class="bg-white p-6 md:p-10 rounded-2xl shadow-xl shadow-navy-900/5 border border-navy-100 opacity-0 animate-fade-in-up stagger-3">
                     <div class="flex items-center gap-3 mb-8">
                         <div class="h-12 w-12 rounded-xl bg-navy-900 flex items-center justify-center text-white">
                             <span class="material-symbols-outlined">send</span>
@@ -143,61 +143,90 @@
                             <h3 class="font-display text-2xl font-bold text-navy-900">Instant Dispatch</h3>
                         </div>
                     </div>
-                    <form class="space-y-5" aria-label="Contact M&O Marine operations team">
+
+                    <?php if (! empty($success)): ?>
+                    <div class="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-4 mb-6">
+                        <span class="material-symbols-outlined text-green-600 text-[22px] flex-shrink-0 mt-0.5">check_circle</span>
+                        <div>
+                            <p class="text-green-800 font-bold text-sm">Request Received!</p>
+                            <p class="text-green-700 text-sm mt-0.5"><?= esc($success) ?></p>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if (! empty($error)): ?>
+                    <div class="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-4 mb-6">
+                        <span class="material-symbols-outlined text-red-600 text-[22px] flex-shrink-0 mt-0.5">error</span>
+                        <p class="text-red-700 text-sm"><?= esc($error) ?></p>
+                    </div>
+                    <?php endif; ?>
+
+                    <form method="POST" action="<?= site_url('contact/submit') ?>" class="space-y-5" aria-label="Contact M&O Marine operations team">
+                        <?= csrf_field() ?>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                                 <label for="vessel-name" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Vessel Name / IMO</label>
-                                <input id="vessel-name" name="vesselName" type="text" autocomplete="organization" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="e.g. MV OCEAN COMMANDER">
+                                <input id="vessel-name" name="vessel_name" type="text" autocomplete="organization"
+                                       value="<?= esc(old('vessel_name')) ?>"
+                                       class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="e.g. MV OCEAN COMMANDER">
                             </div>
                             <div>
                                 <label for="port-of-call" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Port of Call</label>
-                                <select id="port-of-call" name="portOfCall" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 transition-all text-navy-900 text-sm">
-                                    <option>Lattakia</option>
-                                    <option>Tartous</option>
-                                    <option>Other Syrian Port</option>
+                                <select id="port-of-call" name="port_of_call" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 transition-all text-navy-900 text-sm">
+                                    <?php foreach (['Lattakia','Tartous','Other Syrian Port'] as $p): ?>
+                                    <option <?= old('port_of_call') === $p ? 'selected' : '' ?>><?= $p ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                         <div>
                             <label for="service-required" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Service Required</label>
-                            <select id="service-required" name="serviceRequired" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm">
-                                <option>Technical Repair / Underwater Services</option>
-                                <option>Emergency Provisions &amp; Stores</option>
-                                <option>Safety Inspection (FFA / LSA)</option>
-                                <option>Customs / Logistics Clearance</option>
-                                <option>Nautical Charts &amp; Publications</option>
-                                <option>Ship Agency Services</option>
-                                <option>General Inquiry</option>
+                            <select id="service-required" name="service_required" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm">
+                                <?php foreach ([
+                                    'Technical Repair / Underwater Services',
+                                    'Emergency Provisions & Stores',
+                                    'Safety Inspection (FFA / LSA)',
+                                    'Customs / Logistics Clearance',
+                                    'Nautical Charts & Publications',
+                                    'Ship Agency Services',
+                                    'General Inquiry',
+                                ] as $s): ?>
+                                <option <?= old('service_required') === $s ? 'selected' : '' ?>><?= esc($s) ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                                 <label for="contact-number" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Contact Number</label>
-                                <input id="contact-number" name="contactNumber" type="tel" inputmode="tel" autocomplete="tel" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="+963 ...">
+                                <input id="contact-number" name="contact_number" type="tel" inputmode="tel" autocomplete="tel"
+                                       value="<?= esc(old('contact_number')) ?>"
+                                       class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="+963 ...">
                             </div>
                             <div>
                                 <label for="email-address" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Email Address</label>
-                                <input id="email-address" name="emailAddress" type="email" autocomplete="email" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="captain@vessel.com">
+                                <input id="email-address" name="email" type="email" autocomplete="email"
+                                       value="<?= esc(old('email')) ?>"
+                                       class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm" placeholder="captain@vessel.com">
                             </div>
                         </div>
                         <div>
                             <label for="message-requirements" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Message / Requirements</label>
-                            <textarea id="message-requirements" name="messageRequirements" rows="4" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm resize-none" placeholder="Describe your vessel's requirements..."></textarea>
+                            <textarea id="message-requirements" name="message" rows="4" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 focus:ring-1 focus:ring-maritime-500 transition-all text-navy-900 text-sm resize-none" placeholder="Describe your vessel's requirements..."><?= esc(old('message')) ?></textarea>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-3">Urgency Level</label>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-2 cursor-pointer bg-red-50 border border-red-200 rounded-lg px-4 py-2.5 hover:bg-red-100 transition-colors">
-                                    <input id="urgency-critical" type="radio" name="urgency" class="text-red-500 focus:ring-red-500">
+                                    <input id="urgency-critical" type="radio" name="urgency" value="critical" <?= old('urgency') === 'critical' ? 'checked' : '' ?> class="text-red-500 focus:ring-red-500">
                                     <span class="text-sm font-bold text-red-700">🚨 Critical</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer bg-navy-50 border border-navy-200 rounded-lg px-4 py-2.5 hover:bg-navy-100 transition-colors">
-                                    <input id="urgency-normal" type="radio" name="urgency" checked class="text-maritime-500 focus:ring-maritime-500">
+                                    <input id="urgency-normal" type="radio" name="urgency" value="normal" <?= old('urgency') !== 'critical' ? 'checked' : '' ?> class="text-maritime-500 focus:ring-maritime-500">
                                     <span class="text-sm font-bold text-navy-700">✓ Normal</span>
                                 </label>
                             </div>
                         </div>
-                        <button type="button" class="w-full bg-navy-900 text-white font-bold py-4 rounded-xl uppercase tracking-widest hover:bg-maritime-500 transition-colors flex items-center justify-center gap-2 mt-2">
+                        <button type="submit" class="w-full bg-navy-900 text-white font-bold py-4 rounded-xl uppercase tracking-widest hover:bg-maritime-500 transition-colors flex items-center justify-center gap-2 mt-2">
                             <span class="material-symbols-outlined text-[20px]">send</span>
                             Send Request
                         </button>
