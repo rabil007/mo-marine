@@ -17,17 +17,22 @@ class Publications extends BaseController
     public function index(): string
     {
         return view('admin/publications/index', [
+            'pageTitle'    => 'Publications',
+            'breadcrumbs'  => [['label' => 'Publications']],
             'publications' => $this->model->orderBy('sort_order', 'ASC')->orderBy('created_at', 'DESC')->findAll(),
-            'success'      => session()->getFlashdata('success'),
-            'error'        => session()->getFlashdata('error'),
         ]);
     }
 
     public function create(): string
     {
         return view('admin/publications/form', [
+            'pageTitle'   => 'Upload Publication',
+            'breadcrumbs' => [
+                ['label' => 'Publications', 'url' => site_url('admin/publications')],
+                ['label' => 'Upload'],
+            ],
             'publication' => null,
-            'error'       => session()->getFlashdata('error'),
+            'formError'   => session()->getFlashdata('form_error'),
         ]);
     }
 
@@ -36,15 +41,15 @@ class Publications extends BaseController
         $file = $this->request->getFile('pdf_file');
 
         if (! $file || ! $file->isValid() || $file->hasMoved()) {
-            return redirect()->to('/admin/publications/new')->with('error', 'A valid PDF file is required.');
+            return redirect()->to('/admin/publications/new')->with('form_error', 'A valid PDF file is required.');
         }
 
         if ($file->getClientMimeType() !== 'application/pdf') {
-            return redirect()->to('/admin/publications/new')->with('error', 'Only PDF files are allowed.');
+            return redirect()->to('/admin/publications/new')->with('form_error', 'Only PDF files are allowed.');
         }
 
         if ($file->getSize() > 20 * 1024 * 1024) {
-            return redirect()->to('/admin/publications/new')->with('error', 'File size must be under 20 MB.');
+            return redirect()->to('/admin/publications/new')->with('form_error', 'File size must be under 20 MB.');
         }
 
         $newName = $file->getRandomName();
@@ -72,8 +77,13 @@ class Publications extends BaseController
         }
 
         return view('admin/publications/form', [
+            'pageTitle'   => 'Edit Publication',
+            'breadcrumbs' => [
+                ['label' => 'Publications', 'url' => site_url('admin/publications')],
+                ['label' => 'Edit'],
+            ],
             'publication' => $publication,
-            'error'       => session()->getFlashdata('error'),
+            'formError'   => session()->getFlashdata('form_error'),
         ]);
     }
 
@@ -96,7 +106,7 @@ class Publications extends BaseController
 
         if ($file && $file->isValid() && ! $file->hasMoved()) {
             if ($file->getClientMimeType() !== 'application/pdf') {
-                return redirect()->to("/admin/publications/{$id}/edit")->with('error', 'Only PDF files are allowed.');
+                return redirect()->to("/admin/publications/{$id}/edit")->with('form_error', 'Only PDF files are allowed.');
             }
 
             $oldPath = FCPATH . $publication['file_path'];

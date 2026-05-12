@@ -1,160 +1,160 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard | M&amp;O Marine Admin</title>
-    <meta name="robots" content="noindex, nofollow"/>
-    <base href="<?= base_url('/') ?>"/>
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/css/tailwind.css"/>
-    <link rel="stylesheet" href="assets/css/style.css"/>
-</head>
-<body class="bg-navy-950 min-h-screen">
+<?= $this->extend('layouts/admin') ?>
 
-    <nav class="glass-nav sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/dashboard" class="flex items-center gap-3">
-                <img src="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"
-                     alt="M&O Logo" width="36" height="36" class="h-9 w-9 object-contain"/>
+<?= $this->section('head_extra') ?>
+<style>
+.stat-icon-pages    { background: linear-gradient(135deg,#3b82f6,#1d4ed8); }
+.stat-icon-seo      { background: linear-gradient(135deg,#10b981,#059669); }
+.stat-icon-pub      { background: linear-gradient(135deg,#f59e0b,#d97706); }
+.stat-icon-status   { background: linear-gradient(135deg,#8b5cf6,#6d28d9); }
+.quicknav-item:hover .qn-icon { color: #38bdf8; }
+</style>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+<!-- Page header -->
+<div class="mb-8">
+    <h1 class="font-display text-[26px] font-bold text-white leading-tight">
+        Welcome back, <span class="text-sky-400"><?= esc(session()->get('admin_name')) ?></span>
+    </h1>
+    <p class="text-white/35 text-sm mt-1">M&amp;O Marine Service — Admin Panel</p>
+</div>
+
+<!-- Stats row -->
+<div class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-7">
+
+    <div class="stat-card rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-5">
+            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">Pages</p>
+            <div class="stat-icon-pages w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <span class="material-symbols-outlined text-white text-[18px]">web</span>
+            </div>
+        </div>
+        <p class="font-display text-[34px] font-bold text-white leading-none">7</p>
+        <p class="text-white/30 text-xs mt-2">Public pages live</p>
+    </div>
+
+    <div class="stat-card rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-5">
+            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">SEO</p>
+            <div class="stat-icon-seo w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <span class="material-symbols-outlined text-white text-[18px]">verified</span>
+            </div>
+        </div>
+        <p class="font-display text-[34px] font-bold text-white leading-none">100<span class="text-lg">%</span></p>
+        <p class="text-white/30 text-xs mt-2">All pages passing audit</p>
+    </div>
+
+    <div class="stat-card rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-5">
+            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">Publications</p>
+            <div class="stat-icon-pub w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <span class="material-symbols-outlined text-white text-[18px]">picture_as_pdf</span>
+            </div>
+        </div>
+        <p class="font-display text-[34px] font-bold text-white leading-none"><?= $pub_count ?></p>
+        <p class="text-white/30 text-xs mt-2">Active PDFs uploaded</p>
+    </div>
+
+    <div class="stat-card rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-5">
+            <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest">Status</p>
+            <div class="stat-icon-status w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <span class="material-symbols-outlined text-white text-[18px]">check_circle</span>
+            </div>
+        </div>
+        <p class="font-display text-[28px] font-bold text-emerald-400 leading-none">Live</p>
+        <p class="text-white/30 text-xs mt-2">All routes responding</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+    <!-- Content Modules -->
+    <div class="lg:col-span-2 section-card p-6">
+        <div class="flex items-center gap-2 mb-5">
+            <span class="material-symbols-outlined text-sky-500 text-[18px]">grid_view</span>
+            <h2 class="text-white font-bold text-sm">Content Modules</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="<?= site_url('admin/publications') ?>" class="module-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.08))">
+                    <span class="material-symbols-outlined text-red-400 text-[22px]">picture_as_pdf</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-white font-semibold text-sm">Publications</p>
+                    <p class="text-white/35 text-xs mt-0.5">Upload & manage PDFs</p>
+                </div>
+                <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors flex-shrink-0 text-[18px]">arrow_forward</span>
+            </a>
+
+            <!-- Placeholder for future module -->
+            <div class="rounded-xl p-4 flex items-center gap-4 border border-dashed border-white/8 opacity-40">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/4">
+                    <span class="material-symbols-outlined text-white/30 text-[22px]">add</span>
+                </div>
                 <div>
-                    <span class="font-display font-bold text-white text-sm tracking-wider">M&amp;O</span>
-                    <span class="text-navy-300 text-xs ml-2">Admin</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-4">
-                <a href="/" target="_blank"
-                   class="text-navy-300 hover:text-white text-sm flex items-center gap-1.5 transition-colors">
-                    <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-                    View Site
-                </a>
-                <div class="w-px h-5 bg-white/10"></div>
-                <span class="text-navy-300 text-sm">
-                    <span class="material-symbols-outlined text-[16px] align-middle mr-1">person</span>
-                    <?= esc($admin_name) ?>
-                </span>
-                <a href="<?= site_url('logout') ?>"
-                   class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-sm px-3 py-1.5 rounded-lg transition-all">
-                    <span class="material-symbols-outlined text-[16px]">logout</span>
-                    Logout
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto px-6 py-10">
-
-        <div class="mb-8">
-            <h1 class="font-display text-2xl font-bold text-white">Welcome back, <?= esc($admin_name) ?></h1>
-            <p class="text-navy-400 text-sm mt-1">M&amp;O Marine Service — Admin Dashboard</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-            <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-navy-400 text-xs font-bold uppercase tracking-widest">Pages</span>
-                    <span class="material-symbols-outlined text-maritime-500 text-[22px]">web</span>
-                </div>
-                <div class="font-display text-3xl font-bold text-white">7</div>
-                <p class="text-navy-400 text-xs mt-1">Public pages live</p>
-            </div>
-            <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-navy-400 text-xs font-bold uppercase tracking-widest">SEO</span>
-                    <span class="material-symbols-outlined text-green-400 text-[22px]">verified</span>
-                </div>
-                <div class="font-display text-3xl font-bold text-white">100%</div>
-                <p class="text-navy-400 text-xs mt-1">All pages passing audit</p>
-            </div>
-            <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-navy-400 text-xs font-bold uppercase tracking-widest">Assets</span>
-                    <span class="material-symbols-outlined text-blue-400 text-[22px]">folder</span>
-                </div>
-                <div class="font-display text-3xl font-bold text-white">24</div>
-                <p class="text-navy-400 text-xs mt-1">Images, CSS, JS, PDFs</p>
-            </div>
-            <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-navy-400 text-xs font-bold uppercase tracking-widest">Status</span>
-                    <span class="material-symbols-outlined text-green-400 text-[22px]">check_circle</span>
-                </div>
-                <div class="font-display text-3xl font-bold text-green-400">Live</div>
-                <p class="text-navy-400 text-xs mt-1">All routes responding 200</p>
-            </div>
-        </div>
-
-        <div class="bg-navy-900 rounded-xl border border-white/10 p-6 mb-6">
-            <h2 class="font-display font-bold text-white mb-5 flex items-center gap-2">
-                <span class="material-symbols-outlined text-maritime-500 text-[20px]">link</span>
-                Quick Navigation
-            </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-                <?php
-                $pages = [
-                    ['label' => 'Home',      'url' => '/',          'icon' => 'home'],
-                    ['label' => 'About',     'url' => '/about',     'icon' => 'info'],
-                    ['label' => 'Services',  'url' => '/services',  'icon' => 'inventory'],
-                    ['label' => 'Technical', 'url' => '/technical', 'icon' => 'engineering'],
-                    ['label' => 'Logistics', 'url' => '/logistics', 'icon' => 'local_shipping'],
-                    ['label' => 'FAQ',       'url' => '/faq',       'icon' => 'help'],
-                    ['label' => 'Contact',   'url' => '/contact',   'icon' => 'mail'],
-                ];
-                foreach ($pages as $page): ?>
-                <a href="<?= $page['url'] ?>" target="_blank"
-                   class="flex flex-col items-center gap-2 bg-navy-800 hover:bg-navy-700 rounded-lg p-4 border border-white/5 hover:border-maritime-500/30 transition-all group text-center">
-                    <span class="material-symbols-outlined text-navy-400 group-hover:text-maritime-500 text-[24px] transition-colors"><?= $page['icon'] ?></span>
-                    <span class="text-navy-300 group-hover:text-white text-xs font-medium transition-colors"><?= $page['label'] ?></span>
-                </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-        <div class="bg-navy-900 rounded-xl border border-white/10 p-6 mb-6">
-            <h2 class="font-display font-bold text-white mb-5 flex items-center gap-2">
-                <span class="material-symbols-outlined text-maritime-500 text-[20px]">picture_as_pdf</span>
-                Content Management
-            </h2>
-            <a href="<?= site_url('admin/publications') ?>"
-               class="flex items-center justify-between bg-navy-800 hover:bg-navy-700 border border-white/5 hover:border-maritime-500/30 rounded-xl p-5 transition-all group">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-maritime-500/10 group-hover:bg-maritime-500/20 rounded-lg flex items-center justify-center transition-colors">
-                        <span class="material-symbols-outlined text-maritime-500 text-[24px]">picture_as_pdf</span>
-                    </div>
-                    <div>
-                        <p class="text-white font-semibold text-sm">Publications</p>
-                        <p class="text-navy-400 text-xs mt-0.5">Upload & manage downloadable PDF publications</p>
-                    </div>
-                </div>
-                <span class="material-symbols-outlined text-navy-500 group-hover:text-white transition-colors">arrow_forward</span>
-            </a>
-        </div>
-
-        <div class="bg-navy-900 rounded-xl border border-white/10 p-6">
-            <h2 class="font-display font-bold text-white mb-5 flex items-center gap-2">
-                <span class="material-symbols-outlined text-maritime-500 text-[20px]">info</span>
-                System Info
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                <div class="bg-navy-800 rounded-lg p-4 border border-white/5">
-                    <p class="text-navy-400 text-xs uppercase tracking-wider mb-1">Framework</p>
-                    <p class="text-white font-medium">CodeIgniter 4</p>
-                </div>
-                <div class="bg-navy-800 rounded-lg p-4 border border-white/5">
-                    <p class="text-navy-400 text-xs uppercase tracking-wider mb-1">PHP Version</p>
-                    <p class="text-white font-medium"><?= PHP_VERSION ?></p>
-                </div>
-                <div class="bg-navy-800 rounded-lg p-4 border border-white/5">
-                    <p class="text-navy-400 text-xs uppercase tracking-wider mb-1">Environment</p>
-                    <p class="text-white font-medium"><?= ucfirst(ENVIRONMENT) ?></p>
+                    <p class="text-white/50 font-semibold text-sm">More modules</p>
+                    <p class="text-white/25 text-xs mt-0.5">Coming soon</p>
                 </div>
             </div>
         </div>
+    </div>
 
-    </main>
+    <!-- System Info -->
+    <div class="section-card p-6">
+        <div class="flex items-center gap-2 mb-5">
+            <span class="material-symbols-outlined text-sky-500 text-[18px]">memory</span>
+            <h2 class="text-white font-bold text-sm">System</h2>
+        </div>
+        <ul class="space-y-3">
+            <?php foreach ([
+                ['label' => 'Framework',   'value' => 'CodeIgniter 4',    'icon' => 'code'],
+                ['label' => 'PHP',         'value' => PHP_VERSION,        'icon' => 'terminal'],
+                ['label' => 'Environment', 'value' => ucfirst(ENVIRONMENT),'icon' => 'settings'],
+            ] as $item): ?>
+            <li class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5">
+                <span class="material-symbols-outlined text-sky-500/60 text-[16px]"><?= $item['icon'] ?></span>
+                <div class="flex-1 min-w-0">
+                    <p class="text-white/35 text-[10px] uppercase tracking-wider"><?= $item['label'] ?></p>
+                    <p class="text-white/80 text-xs font-semibold mt-0.5"><?= $item['value'] ?></p>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 
-</body>
-</html>
+</div>
+
+<!-- Quick Navigation -->
+<div class="section-card p-6 mt-5">
+    <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sky-500 text-[18px]">link</span>
+            <h2 class="text-white font-bold text-sm">Quick Navigation</h2>
+        </div>
+        <p class="text-white/25 text-xs">Opens in new tab</p>
+    </div>
+    <div class="grid grid-cols-4 sm:grid-cols-7 gap-3">
+        <?php foreach ([
+            ['label' => 'Home',      'url' => '/',          'icon' => 'home',          'color' => 'text-sky-400'],
+            ['label' => 'About',     'url' => '/about',     'icon' => 'info',          'color' => 'text-violet-400'],
+            ['label' => 'Services',  'url' => '/services',  'icon' => 'inventory',     'color' => 'text-amber-400'],
+            ['label' => 'Technical', 'url' => '/technical', 'icon' => 'engineering',   'color' => 'text-emerald-400'],
+            ['label' => 'Logistics', 'url' => '/logistics', 'icon' => 'local_shipping','color' => 'text-orange-400'],
+            ['label' => 'FAQ',       'url' => '/faq',       'icon' => 'help',          'color' => 'text-pink-400'],
+            ['label' => 'Contact',   'url' => '/contact',   'icon' => 'mail',          'color' => 'text-teal-400'],
+        ] as $page): ?>
+        <a href="<?= $page['url'] ?>" target="_blank"
+           class="quicknav-item flex flex-col items-center gap-2 bg-white/3 hover:bg-white/6 rounded-xl p-4 border border-white/6 hover:border-white/12 transition-all group text-center">
+            <span class="material-symbols-outlined qn-icon <?= $page['color'] ?> text-[22px] transition-colors"><?= $page['icon'] ?></span>
+            <span class="text-white/40 group-hover:text-white/70 text-[11px] font-medium transition-colors leading-tight"><?= $page['label'] ?></span>
+        </a>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<?= $this->endSection() ?>
