@@ -16,7 +16,7 @@ $routes->post('contact/submit', 'Contact::submit');
 
 $routes->get('login', 'Auth::login', ['as' => 'login']);
 $routes->post('login', 'Auth::attemptLogin');
-$routes->get('logout', 'Auth::logout', ['as' => 'logout']);
+$routes->post('logout', 'Auth::logout', ['as' => 'logout']);
 
 $routes->get('api/publications', 'Api::publications');
 

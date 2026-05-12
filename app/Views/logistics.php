@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('head_scripts') ?>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mo-marine.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"<?= site_url('services') ?>"},{"@type":"ListItem","position":3,"name":"Logistics & Port Operations","item":"<?= site_url('logistics') ?>"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mo-marine.com/"},{"@type":"ListItem","position":2,"name":"Services", "item":<?= json_encode(site_url('services')) ?>},{"@type":"ListItem","position":3,"name":"Logistics & Port Operations", "item":<?= json_encode(site_url('logistics')) ?>}]}</script>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

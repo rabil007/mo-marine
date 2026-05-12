@@ -76,8 +76,8 @@ $firstGroup = array_key_first($groups);
                     $isFirst = ($groupKey === $firstGroup);
                 ?>
                 <button type="button"
-                        onclick="switchTab('<?= $groupKey ?>')"
-                        id="tab-<?= $groupKey ?>"
+                        onclick="switchTab('<?= esc($groupKey, 'js') ?>')"
+                        id="tab-<?= esc($groupKey, 'attr') ?>"
                         class="group-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all border border-transparent text-white/50 hover:text-white hover:bg-white/5 <?= $isFirst ? 'active' : '' ?>">
                     <span class="material-symbols-outlined text-[18px] <?= $meta['color'] ?>"><?= $meta['icon'] ?></span>
                     <span><?= $meta['label'] ?></span>
@@ -101,7 +101,7 @@ $firstGroup = array_key_first($groups);
                 $meta    = $groupMeta[$groupKey] ?? ['label' => ucfirst($groupKey), 'icon' => 'settings', 'color' => 'text-sky-400'];
                 $isFirst = ($groupKey === $firstGroup);
             ?>
-            <div class="group-panel <?= $isFirst ? 'active' : '' ?>" id="panel-<?= $groupKey ?>">
+            <div class="group-panel <?= $isFirst ? 'active' : '' ?>" id="panel-<?= esc($groupKey, 'attr') ?>">
                 <div class="section-card p-6">
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/6">
                         <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -135,13 +135,13 @@ $firstGroup = array_key_first($groups);
                             <?php endif; ?>
 
                             <div class="flex-1 min-w-0">
-                                <label for="field-<?= $field['key'] ?>"
+                                <label for="field-<?= esc($field['key'], 'attr') ?>"
                                        class="block text-white/60 text-[11px] font-bold uppercase tracking-widest mb-2">
                                     <?= esc($field['label']) ?>
                                 </label>
-                                <input id="field-<?= $field['key'] ?>"
-                                       type="<?= in_array($field['type'], ['tel','email','url']) ? 'text' : 'text' ?>"
-                                       name="<?= esc($field['key']) ?>"
+                                <input id="field-<?= esc($field['key'], 'attr') ?>"
+                                       type="text"
+                                       name="<?= esc($field['key'], 'attr') ?>"
                                        value="<?= esc($field['value'] ?? '') ?>"
                                        class="settings-input"
                                        placeholder="<?= $field['type'] === 'tel' ? '+xxx xxx xxxxxx'
@@ -189,8 +189,10 @@ $firstGroup = array_key_first($groups);
 function switchTab(key) {
     document.querySelectorAll('.group-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.group-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + key).classList.add('active');
-    document.getElementById('panel-' + key).classList.add('active');
+    const tab   = document.getElementById('tab-'   + CSS.escape(key));
+    const panel = document.getElementById('panel-' + CSS.escape(key));
+    if (tab)   tab.classList.add('active');
+    if (panel) panel.classList.add('active');
 }
 </script>
 <?= $this->endSection() ?>

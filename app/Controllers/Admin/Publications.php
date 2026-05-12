@@ -44,12 +44,21 @@ class Publications extends BaseController
             return redirect()->to('/admin/publications/new')->with('form_error', 'A valid PDF file is required.');
         }
 
-        if ($file->getClientMimeType() !== 'application/pdf') {
+        if (strtolower($file->getClientExtension()) !== 'pdf' || $file->getMimeType() !== 'application/pdf') {
             return redirect()->to('/admin/publications/new')->with('form_error', 'Only PDF files are allowed.');
         }
 
         if ($file->getSize() > 20 * 1024 * 1024) {
             return redirect()->to('/admin/publications/new')->with('form_error', 'File size must be under 20 MB.');
+        }
+
+        if (! $this->validate([
+            'title'      => 'required|max_length[255]',
+            'subtitle'   => 'permit_empty|max_length[255]',
+            'sort_order' => 'permit_empty|integer',
+        ])) {
+            return redirect()->to('/admin/publications/new')
+                ->with('form_error', implode(' ', $this->validator->getErrors()));
         }
 
         $newName = $file->getRandomName();
@@ -58,7 +67,7 @@ class Publications extends BaseController
         $this->model->insert([
             'title'      => $this->request->getPost('title'),
             'subtitle'   => $this->request->getPost('subtitle') ?: null,
-            'file_name'  => $file->getClientName(),
+            'file_name'  => basename($file->getClientName()),
             'file_path'  => 'uploads/publications/' . $newName,
             'file_size'  => $file->getSize(),
             'is_active'  => (int) $this->request->getPost('is_active'),
@@ -68,7 +77,7 @@ class Publications extends BaseController
         return redirect()->to('/admin/publications')->with('success', 'Publication uploaded successfully.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $publication = $this->model->find($id);
 
@@ -95,6 +104,15 @@ class Publications extends BaseController
             return redirect()->to('/admin/publications')->with('error', 'Publication not found.');
         }
 
+        if (! $this->validate([
+            'title'      => 'required|max_length[255]',
+            'subtitle'   => 'permit_empty|max_length[255]',
+            'sort_order' => 'permit_empty|integer',
+        ])) {
+            return redirect()->to("/admin/publications/{$id}/edit")
+                ->with('form_error', implode(' ', $this->validator->getErrors()));
+        }
+
         $data = [
             'title'      => $this->request->getPost('title'),
             'subtitle'   => $this->request->getPost('subtitle') ?: null,
@@ -105,19 +123,20 @@ class Publications extends BaseController
         $file = $this->request->getFile('pdf_file');
 
         if ($file && $file->isValid() && ! $file->hasMoved()) {
-            if ($file->getClientMimeType() !== 'application/pdf') {
+            if (strtolower($file->getClientExtension()) !== 'pdf' || $file->getMimeType() !== 'application/pdf') {
                 return redirect()->to("/admin/publications/{$id}/edit")->with('form_error', 'Only PDF files are allowed.');
             }
 
-            $oldPath = FCPATH . $publication['file_path'];
-            if (file_exists($oldPath)) {
+            $oldPath   = realpath(FCPATH . $publication['file_path']);
+            $uploadDir = realpath(FCPATH . 'uploads/publications');
+            if ($oldPath && $uploadDir && str_starts_with($oldPath, $uploadDir) && file_exists($oldPath)) {
                 unlink($oldPath);
             }
 
             $newName = $file->getRandomName();
             $file->move(FCPATH . 'uploads/publications', $newName);
 
-            $data['file_name'] = $file->getClientName();
+            $data['file_name'] = basename($file->getClientName());
             $data['file_path'] = 'uploads/publications/' . $newName;
             $data['file_size'] = $file->getSize();
         }
@@ -132,8 +151,9 @@ class Publications extends BaseController
         $publication = $this->model->find($id);
 
         if ($publication) {
-            $filePath = FCPATH . $publication['file_path'];
-            if (file_exists($filePath)) {
+            $filePath = realpath(FCPATH . $publication['file_path']);
+            $uploadDir = realpath(FCPATH . 'uploads/publications');
+            if ($filePath && $uploadDir && str_starts_with($filePath, $uploadDir) && file_exists($filePath)) {
                 unlink($filePath);
             }
             $this->model->delete($id);

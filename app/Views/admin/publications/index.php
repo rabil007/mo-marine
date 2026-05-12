@@ -60,7 +60,7 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 hidden md:table-cell">
-                        <a href="<?= base_url($pub['file_path']) ?>" target="_blank"
+                        <a href="<?= esc(base_url($pub['file_path']), 'attr') ?>" target="_blank"
                            class="flex items-center gap-1.5 text-sky-400/70 hover:text-sky-400 text-xs transition-colors max-w-[200px] group/link">
                             <span class="material-symbols-outlined text-[13px] flex-shrink-0 group-hover/link:translate-y-px transition-transform">download</span>
                             <span class="truncate"><?= esc($pub['file_name']) ?></span>

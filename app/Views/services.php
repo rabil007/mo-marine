@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('head_scripts') ?>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mo-marine.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"<?= site_url('services') ?>"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mo-marine.com/"},{"@type":"ListItem","position":2,"name":"Services", "item":<?= json_encode(site_url('services')) ?>}]}</script>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -277,7 +277,7 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <?php foreach ($publications as $pub): ?>
-                    <a href="<?= base_url($pub['file_path']) ?>" target="_blank" rel="noopener"
+                    <a href="<?= esc(base_url($pub['file_path']), 'attr') ?>" target="_blank" rel="noopener"
                        class="group flex items-start gap-4 bg-white border border-navy-100 rounded-xl p-5 hover:border-maritime-500/40 hover:shadow-lg transition-all duration-300">
                         <div class="flex-shrink-0 w-12 h-12 bg-maritime-500/10 rounded-lg flex items-center justify-center group-hover:bg-maritime-500 transition-colors duration-300">
                             <span class="material-symbols-outlined text-maritime-500 group-hover:text-white text-[24px] transition-colors duration-300">picture_as_pdf</span>

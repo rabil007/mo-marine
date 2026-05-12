@@ -121,7 +121,7 @@
                         <p class="text-white/80 text-sm font-medium truncate"><?= esc($publication['file_name']) ?></p>
                         <p class="text-white/30 text-xs mt-0.5"><?= number_format($publication['file_size'] / 1024, 0) ?> KB · Current file</p>
                     </div>
-                    <a href="<?= base_url($publication['file_path']) ?>" target="_blank"
+                    <a href="<?= esc(base_url($publication['file_path']), 'attr') ?>" target="_blank"
                        class="flex-shrink-0 flex items-center gap-1.5 text-white/35 hover:text-white text-xs px-3 py-1.5 rounded-lg bg-white/4 hover:bg-white/8 border border-white/8 transition-all">
                         <span class="material-symbols-outlined text-[14px]">open_in_new</span> Preview
                     </a>

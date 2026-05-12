@@ -92,9 +92,9 @@
                     ];
                     [$cls, $ico] = $statusMap[$sub['status']] ?? $statusMap['read'];
                     ?>
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border <?= $cls ?>">
-                        <span class="material-symbols-outlined text-[12px]"><?= $ico ?></span>
-                        <?= ucfirst($sub['status']) ?>
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border <?= esc($cls) ?>">
+                        <span class="material-symbols-outlined text-[12px]"><?= esc($ico) ?></span>
+                        <?= esc(ucfirst($sub['status'])) ?>
                     </span>
                 </div>
                 <p class="text-white/20 text-[11px]"><?= date('d M, H:i', strtotime($sub['created_at'])) ?></p>

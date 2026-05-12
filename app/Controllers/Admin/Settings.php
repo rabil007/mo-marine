@@ -25,10 +25,15 @@ class Settings extends BaseController
 
     public function update()
     {
-        $post = $this->request->getPost();
-        unset($post[$this->request->config->CSRFTokenName ?? 'csrf_test_name']);
+        $validKeys = array_column(
+            $this->model->select('key')->findAll(),
+            'key'
+        );
 
-        $this->model->saveSettings($post);
+        $post = $this->request->getPost();
+        $safe = array_intersect_key($post, array_flip($validKeys));
+
+        $this->model->saveSettings($safe);
 
         return redirect()->to(site_url('admin/settings'))
             ->with('success', 'Settings saved successfully.');

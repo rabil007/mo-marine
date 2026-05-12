@@ -1116,6 +1116,10 @@ input:where([type='file']):focus {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -2220,6 +2224,10 @@ input:where([type='file']):focus {
 
 .bg-white\/\[0\.015\] {
   background-color: rgb(255 255 255 / 0.015);
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-gradient-to-b {

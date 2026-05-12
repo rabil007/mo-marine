@@ -66,9 +66,9 @@ $st = $statusStyles[$submission['status']] ?? $statusStyles['read'];
                         Critical
                     </span>
                     <?php endif; ?>
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border <?= $st['pill'] ?>">
-                        <span class="w-1.5 h-1.5 rounded-full <?= $st['dot'] ?>"></span>
-                        <?= $st['label'] ?>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border <?= esc($st['pill']) ?>">
+                        <span class="w-1.5 h-1.5 rounded-full <?= esc($st['dot']) ?>"></span>
+                        <?= esc($st['label']) ?>
                     </span>
                 </div>
             </div>
@@ -133,10 +133,10 @@ $st = $statusStyles[$submission['status']] ?? $statusStyles['read'];
                                   <?= $isSelected
                                       ? $activeCls
                                       : 'border-white/6 bg-white/[0.02] text-white/40 hover:border-white/12 hover:bg-white/[0.04]' ?>">
-                        <input type="radio" name="status" value="<?= $val ?>" <?= $isSelected ? 'checked' : '' ?>
+                        <input type="radio" name="status" value="<?= esc($val, 'attr') ?>" <?= $isSelected ? 'checked' : '' ?>
                                class="sr-only" onchange="this.form.submit()">
-                        <span class="w-2 h-2 rounded-full flex-shrink-0 <?= $isSelected ? $dotCls : 'bg-white/15' ?>"></span>
-                        <span class="text-sm font-semibold <?= $isSelected ? '' : 'text-white/40' ?>"><?= $lbl ?></span>
+                        <span class="w-2 h-2 rounded-full flex-shrink-0 <?= $isSelected ? esc($dotCls) : 'bg-white/15' ?>"></span>
+                        <span class="text-sm font-semibold <?= $isSelected ? '' : 'text-white/40' ?>"><?= esc($lbl) ?></span>
                         <?php if ($isSelected): ?>
                         <span class="material-symbols-outlined text-[15px] ml-auto">check</span>
                         <?php endif; ?>

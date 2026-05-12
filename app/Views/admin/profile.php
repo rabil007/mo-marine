@@ -12,7 +12,7 @@
 <div class="flex items-center gap-4 mb-8">
     <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-white flex-shrink-0"
          style="background: linear-gradient(135deg,#0ea5e9,#0284c7); box-shadow: 0 8px 24px rgba(14,165,233,0.3)">
-        <?= strtoupper(substr(session()->get('admin_name'), 0, 1)) ?>
+        <?= esc(strtoupper(substr((string) session()->get('admin_name'), 0, 1))) ?>
     </div>
     <div>
         <h1 class="font-display text-2xl font-bold text-white"><?= esc($user['name']) ?></h1>

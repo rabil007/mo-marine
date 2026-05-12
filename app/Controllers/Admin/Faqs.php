@@ -47,18 +47,20 @@ class Faqs extends BaseController
 
     public function store()
     {
-        $question = trim($this->request->getPost('question'));
-        $answer   = trim($this->request->getPost('answer'));
-        $category = trim($this->request->getPost('category')) ?: 'General';
-
-        if (empty($question) || empty($answer)) {
-            return redirect()->to('/admin/faqs/new')->with('form_error', 'Question and answer are required.');
+        if (! $this->validate([
+            'question'   => 'required|max_length[500]',
+            'answer'     => 'required|max_length[5000]',
+            'category'   => 'permit_empty|max_length[100]',
+            'sort_order' => 'permit_empty|integer',
+        ])) {
+            return redirect()->to('/admin/faqs/new')
+                ->with('form_error', implode(' ', $this->validator->getErrors()));
         }
 
         $this->model->insert([
-            'question'   => $question,
-            'answer'     => $answer,
-            'category'   => $category,
+            'question'   => trim($this->request->getPost('question')),
+            'answer'     => trim($this->request->getPost('answer')),
+            'category'   => trim($this->request->getPost('category')) ?: 'General',
             'is_active'  => (int) $this->request->getPost('is_active'),
             'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,
         ]);
@@ -66,7 +68,7 @@ class Faqs extends BaseController
         return redirect()->to('/admin/faqs')->with('success', 'FAQ added successfully.');
     }
 
-    public function edit(int $id): string
+    public function edit(int $id)
     {
         $faq = $this->model->find($id);
 
@@ -90,6 +92,16 @@ class Faqs extends BaseController
     {
         if (! $this->model->find($id)) {
             return redirect()->to('/admin/faqs')->with('error', 'FAQ not found.');
+        }
+
+        if (! $this->validate([
+            'question'   => 'required|max_length[500]',
+            'answer'     => 'required|max_length[5000]',
+            'category'   => 'permit_empty|max_length[100]',
+            'sort_order' => 'permit_empty|integer',
+        ])) {
+            return redirect()->to("/admin/faqs/{$id}/edit")
+                ->with('form_error', implode(' ', $this->validator->getErrors()));
         }
 
         $this->model->update($id, [

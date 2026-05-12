@@ -185,7 +185,7 @@ $navModules  = [
         <a href="<?= site_url('admin/profile') ?>"
            class="flex items-center gap-3 px-3 py-2.5 mt-1 rounded-xl hover:bg-white/5 transition-all group">
             <div class="avatar w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 group-hover:shadow-lg group-hover:shadow-sky-500/20 transition-all">
-                <?= $adminInitial ?>
+                <?= esc($adminInitial) ?>
             </div>
             <div class="min-w-0 flex-1">
                 <p class="text-white/70 group-hover:text-white text-[12px] font-medium truncate transition-colors"><?= esc($adminName) ?></p>
@@ -220,7 +220,7 @@ $navModules  = [
                 <?php foreach ($breadcrumbs as $crumb): ?>
                 <span class="material-symbols-outlined text-[11px] text-white/20">chevron_right</span>
                 <?php if (! empty($crumb['url'])): ?>
-                <a href="<?= $crumb['url'] ?>" class="text-white/35 hover:text-white/70 transition-colors font-medium"><?= esc($crumb['label']) ?></a>
+                <a href="<?= esc($crumb['url'], 'attr') ?>" class="text-white/35 hover:text-white/70 transition-colors font-medium"><?= esc($crumb['label']) ?></a>
                 <?php else: ?>
                 <span class="text-white/70 font-semibold"><?= esc($crumb['label']) ?></span>
                 <?php endif; ?>
@@ -238,11 +238,14 @@ $navModules  = [
                 View Site
             </a>
             <div class="w-px h-4 bg-white/8 hidden sm:block"></div>
-            <a href="<?= site_url('logout') ?>"
-               class="flex items-center gap-1.5 text-white/50 hover:text-white text-xs font-medium px-3 py-2 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-all border border-transparent hover:border-red-500/20">
-                <span class="material-symbols-outlined text-[15px]">logout</span>
-                <span class="hidden sm:inline">Logout</span>
-            </a>
+            <form method="POST" action="<?= site_url('logout') ?>" class="inline">
+                <?= csrf_field() ?>
+                <button type="submit"
+                        class="flex items-center gap-1.5 text-white/50 hover:text-white text-xs font-medium px-3 py-2 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-all border border-transparent hover:border-red-500/20 cursor-pointer bg-transparent">
+                    <span class="material-symbols-outlined text-[15px]">logout</span>
+                    <span class="hidden sm:inline">Logout</span>
+                </button>
+            </form>
         </div>
     </header>
 

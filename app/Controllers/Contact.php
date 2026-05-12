@@ -6,6 +6,20 @@ use App\Models\ContactModel;
 
 class Contact extends BaseController
 {
+    private const ALLOWED_PORTS = [
+        'Lattakia', 'Tartous', 'Other Syrian Port',
+    ];
+
+    private const ALLOWED_SERVICES = [
+        'Technical Repair / Underwater Services',
+        'Emergency Provisions & Stores',
+        'Safety Inspection (FFA / LSA)',
+        'Customs / Logistics Clearance',
+        'Nautical Charts & Publications',
+        'Ship Agency Services',
+        'General Inquiry',
+    ];
+
     public function index(): string
     {
         return view('contact', [
@@ -22,7 +36,18 @@ class Contact extends BaseController
 
     public function submit()
     {
-        $model = new ContactModel();
+        $rules = [
+            'vessel_name'  => 'permit_empty|max_length[200]',
+            'email'        => 'permit_empty|valid_email|max_length[150]',
+            'contact_number' => 'permit_empty|max_length[50]',
+            'message'      => 'permit_empty|max_length[2000]',
+        ];
+
+        if (! $this->validate($rules)) {
+            return redirect()->to('/contact#contact-form')
+                ->with('contact_error', implode(' ', $this->validator->getErrors()))
+                ->withInput();
+        }
 
         $email = trim($this->request->getPost('email') ?? '');
         $phone = trim($this->request->getPost('contact_number') ?? '');
@@ -33,10 +58,17 @@ class Contact extends BaseController
                 ->withInput();
         }
 
+        $portRaw    = $this->request->getPost('port_of_call');
+        $serviceRaw = $this->request->getPost('service_required');
+
+        $port    = in_array($portRaw,    self::ALLOWED_PORTS,    true) ? $portRaw    : self::ALLOWED_PORTS[0];
+        $service = in_array($serviceRaw, self::ALLOWED_SERVICES, true) ? $serviceRaw : self::ALLOWED_SERVICES[6];
+
+        $model = new ContactModel();
         $model->insert([
             'vessel_name'      => trim($this->request->getPost('vessel_name') ?? ''),
-            'port_of_call'     => $this->request->getPost('port_of_call'),
-            'service_required' => $this->request->getPost('service_required'),
+            'port_of_call'     => $port,
+            'service_required' => $service,
             'contact_number'   => $phone,
             'email'            => $email,
             'message'          => trim($this->request->getPost('message') ?? ''),
