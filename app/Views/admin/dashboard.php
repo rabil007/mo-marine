@@ -120,6 +120,18 @@
                 </div>
                 <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors flex-shrink-0 text-[18px]">arrow_forward</span>
             </a>
+
+            <a href="<?= site_url('admin/settings') ?>" class="module-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(245,158,11,0.05))">
+                    <span class="material-symbols-outlined text-amber-400 text-[22px]">tune</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-white font-semibold text-sm">Site Settings</p>
+                    <p class="text-white/35 text-xs mt-0.5">Social links, phones & company info</p>
+                </div>
+                <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors flex-shrink-0 text-[18px]">arrow_forward</span>
+            </a>
         </div>
     </div>
 

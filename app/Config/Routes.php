@@ -45,4 +45,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('admin/contacts/(:num)', 'Admin\Contacts::show/$1');
     $routes->post('admin/contacts/(:num)/status', 'Admin\Contacts::updateStatus/$1');
     $routes->post('admin/contacts/(:num)/delete', 'Admin\Contacts::delete/$1');
+
+    $routes->get('admin/settings', 'Admin\Settings::index');
+    $routes->post('admin/settings', 'Admin\Settings::update');
 });
