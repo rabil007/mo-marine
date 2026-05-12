@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /writable/
+Disallow: /app/
+Disallow: /vendor/
+
+Sitemap: https://mo-marine.com/sitemap.xml
