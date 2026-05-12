@@ -100,6 +100,7 @@ $currentPath = '/' . ltrim(service('request')->getPath(), '/');
 $navModules  = [
     ['label' => 'Dashboard',    'url' => site_url('dashboard'),          'icon' => 'dashboard',      'match' => '/dashboard'],
     ['label' => 'Publications', 'url' => site_url('admin/publications'),  'icon' => 'picture_as_pdf', 'match' => '/admin/publications'],
+    ['label' => 'FAQs',        'url' => site_url('admin/faqs'),          'icon' => 'help',           'match' => '/admin/faqs'],
 ];
 ?>
 

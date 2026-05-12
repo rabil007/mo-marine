@@ -32,4 +32,11 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('admin/profile', 'Admin\Profile::index');
     $routes->post('admin/profile', 'Admin\Profile::update');
     $routes->post('admin/profile/password', 'Admin\Profile::changePassword');
+
+    $routes->get('admin/faqs', 'Admin\Faqs::index');
+    $routes->get('admin/faqs/new', 'Admin\Faqs::create');
+    $routes->post('admin/faqs', 'Admin\Faqs::store');
+    $routes->get('admin/faqs/(:num)/edit', 'Admin\Faqs::edit/$1');
+    $routes->post('admin/faqs/(:num)', 'Admin\Faqs::update/$1');
+    $routes->post('admin/faqs/(:num)/delete', 'Admin\Faqs::delete/$1');
 });

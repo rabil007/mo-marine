@@ -53,7 +53,7 @@
             </div>
         </div>
         <p class="font-display text-[34px] font-bold text-white leading-none"><?= $pub_count ?></p>
-        <p class="text-white/30 text-xs mt-2">Active PDFs uploaded</p>
+        <p class="text-white/30 text-xs mt-2">Active PDFs · <?= $faq_count ?> FAQs</p>
     </div>
 
     <div class="stat-card rounded-2xl p-5">
@@ -90,16 +90,17 @@
                 <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors flex-shrink-0 text-[18px]">arrow_forward</span>
             </a>
 
-            <!-- Placeholder for future module -->
-            <div class="rounded-xl p-4 flex items-center gap-4 border border-dashed border-white/8 opacity-40">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/4">
-                    <span class="material-symbols-outlined text-white/30 text-[22px]">add</span>
+        <a href="<?= site_url('admin/faqs') ?>" class="module-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(14,165,233,0.06))">
+                    <span class="material-symbols-outlined text-sky-400 text-[22px]">help</span>
                 </div>
-                <div>
-                    <p class="text-white/50 font-semibold text-sm">More modules</p>
-                    <p class="text-white/25 text-xs mt-0.5">Coming soon</p>
+                <div class="min-w-0">
+                    <p class="text-white font-semibold text-sm">FAQs</p>
+                    <p class="text-white/35 text-xs mt-0.5 truncate">Manage questions & answers</p>
                 </div>
-            </div>
+                <span class="material-symbols-outlined text-white/20 group-hover:text-sky-400 transition-colors ml-auto flex-shrink-0 text-[18px]">arrow_forward</span>
+            </a>
         </div>
     </div>
 

@@ -41,98 +41,37 @@
                 <p class="text-navy-600 mt-4 max-w-xl mx-auto">Click any question to expand the answer. Can't find what you're looking for? Reach out directly.</p>
             </div>
 
-            <!-- Category: General -->
+            <?php
+            $catStyles = [
+                'General Operations'  => ['bg' => 'bg-maritime-500', 'icon' => 'info'],
+                'Supply & Provisions' => ['bg' => 'bg-blue-500',     'icon' => 'inventory_2'],
+                'Technical & Safety'  => ['bg' => 'bg-red-500',      'icon' => 'engineering'],
+            ];
+            $fallbackColors = ['bg-violet-500','bg-amber-500','bg-teal-500','bg-pink-500'];
+            $colorIdx = 0;
+            foreach ($faq_groups as $category => $questions):
+                $style = $catStyles[$category] ?? ['bg' => $fallbackColors[$colorIdx++ % count($fallbackColors)], 'icon' => 'folder'];
+            ?>
             <div class="mb-12">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="h-9 w-9 rounded-lg bg-maritime-500 flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">info</span></div>
-                    <h3 class="font-display font-bold text-navy-900 text-lg">General Operations</h3>
+                    <div class="h-9 w-9 rounded-lg <?= $style['bg'] ?> flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-[20px]"><?= $style['icon'] ?></span>
+                    </div>
+                    <h3 class="font-display font-bold text-navy-900 text-lg"><?= esc($category) ?></h3>
                 </div>
                 <div class="space-y-3">
+                    <?php foreach ($questions as $q): ?>
                     <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
                         <summary class="flex items-center justify-between gap-4 px-5 md:px-7 py-4 md:py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Which ports do you actively service?</span>
+                            <span class="font-display font-bold text-navy-900"><?= esc($q['question']) ?></span>
                             <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
                         </summary>
-                        <div class="px-5 md:px-7 pb-6 text-navy-600 text-sm md:text-base leading-relaxed border-t border-navy-50 pt-4">Our primary hubs are Lattakia and Tartous ports in Syria. We provide full-scale agency, technical, and supply services 24/7 across these terminals, with dispatch capabilities reaching all vessels within Syrian territorial waters.</div>
+                        <div class="px-5 md:px-7 pb-6 text-navy-600 text-sm md:text-base leading-relaxed border-t border-navy-50 pt-4"><?= nl2br(esc($q['answer'])) ?></div>
                     </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Are you ISSA and IMPA certified?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Yes. M&amp;O is a certified member of both the International Shipsuppliers &amp; Services Association (ISSA) &mdash; the first Syrian company to join in 2002 &mdash; and the International Marine Purchasing Association (IMPA), ensuring all provisions and stores meet global maritime standards.</div>
-                    </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">How many vessels are you currently serving?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Over our 22+ years of operation, we are serving more than 450 vessels belonging to over 50 international shipping companies, covering all vessel types from bulk carriers to tankers and passenger ships.</div>
-                    </details>
+                    <?php endforeach; ?>
                 </div>
             </div>
-
-            <!-- Category: Supply & Provisions -->
-            <div class="mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-9 w-9 rounded-lg bg-blue-500 flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">inventory_2</span></div>
-                    <h3 class="font-display font-bold text-navy-900 text-lg">Supply &amp; Provisions</h3>
-                </div>
-                <div class="space-y-3">
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">How quickly can you dispatch emergency provisions?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">For emergency situations, our dispatch fleet can deliver fresh, frozen, and dry provisions to your vessel within hours of anchoring or berthing, utilizing our localized supply chain and cold-storage warehouses.</div>
-                    </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Do you supply bonded stores?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Yes. We supply a full range of bonded (tax-free) products directly to vessels, including cigarettes, tobacco, alcohol, beverages, perfumes, and electronics, in compliance with Syrian Customs Authority regulations.</div>
-                    </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Can you supply nautical charts worldwide?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Absolutely. We maintain a stock of over 2,500 up-to-date Admiralty charts and can dispatch publications, digital charts (ARCS/ENC), and IMO signs worldwide. We are the first and only company in Syria offering this service.</div>
-                    </details>
-                </div>
-            </div>
-
-            <!-- Category: Technical -->
-            <div class="mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-9 w-9 rounded-lg bg-red-500 flex items-center justify-center text-white"><span class="material-symbols-outlined text-[20px]">engineering</span></div>
-                    <h3 class="font-display font-bold text-navy-900 text-lg">Technical &amp; Safety</h3>
-                </div>
-                <div class="space-y-3">
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Do you provide underwater inspection services?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Yes. We coordinate specialized marine engineering and underwater hull inspections utilizing certified diving teams equipped for technical repairs, hull cleaning, and condition surveys.</div>
-                    </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Can you service FFA and LSA equipment?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Yes. We provide full inspection, servicing, and replacement of Fire Fighting Apparatus (FFA) and Life Saving Apparatus (LSA) including fire extinguishers, life rafts, immersion suits, and pyrotechnics — all compliant with IMO and SOLAS regulations.</div>
-                    </details>
-                    <details class="group bg-white rounded-xl border border-navy-100 shadow-sm overflow-hidden">
-                        <summary class="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
-                            <span class="font-display font-bold text-navy-900">Do you handle spare parts logistics?</span>
-                            <span class="material-symbols-outlined text-maritime-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
-                        </summary>
-                        <div class="px-7 pb-6 text-navy-600 leading-relaxed border-t border-navy-50 pt-4">Yes. We collect spare parts from local or international suppliers, handle customs clearance and airport cargo processing, then deliver directly to the vessel or store them safely in our warehouse until the ship arrives.</div>
-                    </details>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
             <div class="bg-navy-900 rounded-2xl p-6 md:p-10 text-center relative overflow-hidden mt-8">
                 <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(rgba(99,179,237,0.6) 1px, transparent 1px); background-size: 20px 20px;"></div>
