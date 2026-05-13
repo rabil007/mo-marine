@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navbarHTML = `
     <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-28 flex items-center justify-between">
-            <a href="${routes.home}" class="flex items-center gap-4 group relative cursor-pointer" aria-label="M&O Marine Service home">
+        <div class="max-w-7xl mx-auto px-6 h-32 flex items-center justify-between">
+            <a href="${routes.home}" class="flex items-center gap-3 group relative cursor-pointer" aria-label="M&O Marine Service home">
                 <div class="relative flex items-center justify-center">
-                    <img src="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q" alt="M&O Marine Logo" width="96" height="96" decoding="async" class="relative z-10 h-24 w-24 object-contain group-hover:rotate-[5deg] transition-all duration-300"/>
+                    <img src="${resolvePath('assets/images/logo.png')}" alt="M&O Marine Logo" width="252" height="314" decoding="async" class="relative z-10 h-24 w-auto object-contain group-hover:rotate-[5deg] transition-all duration-300"/>
                 </div>
                 <div class="flex flex-col justify-center leading-tight">
                     <span class="font-display font-black tracking-wider text-2xl leading-none text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-blue-300 drop-shadow-sm group-hover:drop-shadow-md transition-all">M&O</span>
@@ -62,15 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="tel:+963933303041" class="hidden lg:inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300/30 hover:bg-white/10 hover:shadow-[0_10px_30px_rgba(59,130,246,0.15)]">
-                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-400/15 text-blue-200">
-                        <span class="material-symbols-outlined text-[16px] leading-none">call</span>
-                    </span>
-                    <span class="flex flex-col leading-none">
-                        <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">24/7</span>
-                        <span class="text-sm font-semibold text-white">Dispatch</span>
-                    </span>
-                </a>
                 <button id="mobile-menu-btn" class="md:hidden text-white hover:text-blue-300 transition-colors ml-2 flex items-center justify-center" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="material-symbols-outlined text-[32px] leading-none">menu</span>
                 </button>

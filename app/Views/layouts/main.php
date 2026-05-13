@@ -9,15 +9,13 @@
     <meta name="theme-color" content="#00142b"/>
     <base href="<?= base_url('/') ?>"/>
     <link rel="canonical" href="<?= esc($canonical, 'attr') ?>"/>
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
-    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
-    <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/logo.png') ?>"/>
+    <link rel="shortcut icon" href="<?= base_url('assets/images/logo.png') ?>"/>
+    <link rel="apple-touch-icon" href="<?= base_url('assets/images/logo.png') ?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
-    <link rel="dns-prefetch" href="https://lh3.googleusercontent.com"/>
     <link rel="preload" as="image" href="<?= esc($preload_image) ?>" fetchpriority="high"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:type" content="website"/>
@@ -34,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/tailwind.css"/>
     <link rel="stylesheet" href="assets/css/style.css"/>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://mo-marine.com/#organization","name":"M&O Marine Services & Ship Supplies Ltd","url":"https://mo-marine.com/","logo":"https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q","image":"https://mo-marine.com/assets/images/hero_bg.png","email":"hala@mo-marine.com","sameAs":["https://www.instagram.com/momarineservices?igsh=MWMxcGlqYTd0dnE3Mw%3D%3D&utm_source=qr","https://www.facebook.com/share/19BLcN5STF/?mibextid=wwXIfr","https://www.linkedin.com/company/mo-marine/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer service","telephone":"+963172770040","areaServed":"SY","availableLanguage":["en","ar"]},{"@type":"ContactPoint","contactType":"sales","telephone":"+963933093901","areaServed":"SY","availableLanguage":["en","ar"]},{"@type":"ContactPoint","contactType":"emergency","telephone":"+963933303041","areaServed":"SY","availableLanguage":["en","ar"]}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://mo-marine.com/#organization","name":"M&O Marine Services & Ship Supplies Ltd","url":"https://mo-marine.com/","logo":"https://mo-marine.com/assets/images/logo.png","image":"https://mo-marine.com/assets/images/hero_bg.png","email":"hala@mo-marine.com","sameAs":["https://www.instagram.com/momarineservices?igsh=MWMxcGlqYTd0dnE3Mw%3D%3D&utm_source=qr","https://www.facebook.com/share/19BLcN5STF/?mibextid=wwXIfr","https://www.linkedin.com/company/mo-marine/"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer service","telephone":"+963172770040","areaServed":"SY","availableLanguage":["en","ar"]},{"@type":"ContactPoint","contactType":"sales","telephone":"+963933093901","areaServed":"SY","availableLanguage":["en","ar"]},{"@type":"ContactPoint","contactType":"emergency","telephone":"+963933303041","areaServed":"SY","availableLanguage":["en","ar"]}]}</script>
     <?= $this->renderSection('head_scripts') ?>
 </head>
 <body class="text-navy-900 selection:bg-maritime-500 selection:text-white">
