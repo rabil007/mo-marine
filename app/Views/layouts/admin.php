@@ -6,7 +6,9 @@
     <title><?= esc($pageTitle ?? 'Admin') ?> | M&amp;O Admin</title>
     <meta name="robots" content="noindex, nofollow"/>
     <base href="<?= base_url('/') ?>"/>
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/logo.png') ?>"/>
+    <link rel="shortcut icon" href="<?= base_url('assets/images/logo.png') ?>"/>
+    <link rel="apple-touch-icon" href="<?= base_url('assets/images/logo.png') ?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@300,0,0,24&display=swap" rel="stylesheet"/>
