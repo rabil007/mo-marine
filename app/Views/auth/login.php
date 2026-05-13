@@ -6,7 +6,7 @@
     <title>Admin Login | M&amp;O Marine Service</title>
     <meta name="robots" content="noindex, nofollow"/>
     <base href="<?= base_url('/') ?>"/>
-    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"/>
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/logo.png') ?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
@@ -19,9 +19,9 @@
 
         <div class="text-center mb-8">
             <a href="/" class="inline-flex flex-col items-center gap-2 group">
-                <img src="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"
-                     alt="M&O Marine Logo" width="72" height="72"
-                     class="h-18 w-18 object-contain group-hover:scale-105 transition-transform duration-300"/>
+                <img src="<?= base_url('assets/images/logo.png') ?>"
+                     alt="M&O Marine Logo" width="252" height="314"
+                     class="h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"/>
                 <div>
                     <div class="font-display font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-300 tracking-wider">M&amp;O</div>
                     <div class="text-blue-300/70 text-xs font-bold tracking-widest uppercase">Marine Services</div>

@@ -143,10 +143,10 @@ $navModules  = [
 
     <!-- Logo -->
     <div class="flex items-center gap-3 px-5 h-16 border-b border-white/6 flex-shrink-0">
-        <div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
-            <img src="https://lh3.googleusercontent.com/aida/ADBb0uja4Pi6GeJT_mp_CqXVXb_-sYCGSBshAeYzAVqZ2X7Fb6s1GVoTslzmP0TCXhHeHT7QAgK8yTTVhxPQUkPvvLgk-Weuhk2NZo-kNLnMs5ct6hKOviBkRS_u_Y3jWRPh8YGCTQUAcVudlWXCHJgijq3v0BCmW5mt4ptwwMZDhjzj4YZ7RyKv4rdxBfxsjQ6NFFqDQd1ZFFJdEnuBpPDZjMwKCuDQtEQM6EnRe99BrFGGz8QJkbcJc29Z_am7mr-jlPpcEfpblO0W2Q"
-                 alt="M&O" class="w-full h-full object-cover"/>
-        </div>
+        <img src="<?= base_url('assets/images/logo.png') ?>"
+             alt="M&O Marine Logo"
+             width="252" height="314"
+             class="h-10 w-auto object-contain flex-shrink-0"/>
         <div>
             <p class="font-display font-bold text-white text-sm tracking-wider leading-none">M&amp;O Marine</p>
             <p class="text-[10px] text-sky-400/70 font-medium tracking-widest uppercase mt-0.5">Admin Panel</p>
