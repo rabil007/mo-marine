@@ -7,7 +7,7 @@ use App\Models\ContactModel;
 class Contact extends BaseController
 {
     private const ALLOWED_PORTS = [
-        'Lattakia', 'Tartous', 'Other Syrian Port',
+        'Lattakia', 'Tartous', 'Baniyas',
     ];
 
     private const ALLOWED_SERVICES = [

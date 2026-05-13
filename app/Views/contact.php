@@ -127,7 +127,7 @@
                         <div class="flex flex-wrap gap-2">
                             <span class="bg-navy-800 text-white text-xs px-3 py-1.5 rounded-full border border-navy-700">Lattakia Port</span>
                             <span class="bg-navy-800 text-white text-xs px-3 py-1.5 rounded-full border border-navy-700">Tartous Port</span>
-                            <span class="bg-navy-800 text-white text-xs px-3 py-1.5 rounded-full border border-navy-700">Syrian Waters</span>
+                            <span class="bg-navy-800 text-white text-xs px-3 py-1.5 rounded-full border border-navy-700">Baniyas Port</span>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                             <div>
                                 <label for="port-of-call" class="block text-xs font-bold text-navy-500 uppercase tracking-wide mb-2">Port of Call</label>
                                 <select id="port-of-call" name="port_of_call" class="w-full bg-surface border border-navy-200 rounded-lg px-4 py-3 focus:outline-none focus:border-maritime-500 transition-all text-navy-900 text-sm">
-                                    <?php foreach (['Lattakia','Tartous','Other Syrian Port'] as $p): ?>
+                                    <?php foreach (['Lattakia','Tartous','Baniyas'] as $p): ?>
                                     <option <?= old('port_of_call') === $p ? 'selected' : '' ?>><?= $p ?></option>
                                     <?php endforeach; ?>
                                 </select>
