@@ -302,23 +302,14 @@
             <div class="bg-navy-50 rounded-xl p-6 md:p-10 text-center border border-navy-100">
                 <h3 class="font-display text-2xl font-bold text-navy-900 mb-8">Our Operational Capabilities</h3>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                <?php $displayStats = array_slice($stats ?? [], 0, 4); ?>
+                <div class="grid grid-cols-2 md:grid-cols-<?= count($displayStats) ?: 4 ?> gap-6 mb-10">
+                    <?php foreach ($displayStats as $st): ?>
                     <div class="bg-white p-6 rounded-lg shadow-sm border border-navy-100">
-                        <div class="font-display text-4xl font-bold text-maritime-500 mb-2">450+</div>
-                        <div class="text-xs font-bold text-navy-500 uppercase tracking-wider">Vessels Under Support</div>
+                        <div class="font-display text-4xl font-bold text-maritime-500 mb-2"><?= esc($st['value']) ?></div>
+                        <div class="text-xs font-bold text-navy-500 uppercase tracking-wider"><?= esc($st['label']) ?></div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-navy-100">
-                        <div class="font-display text-4xl font-bold text-maritime-500 mb-2">50+</div>
-                        <div class="text-xs font-bold text-navy-500 uppercase tracking-wider">Shipping Companies</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-navy-100">
-                        <div class="font-display text-4xl font-bold text-maritime-500 mb-2">24/7</div>
-                        <div class="text-xs font-bold text-navy-500 uppercase tracking-wider">Dispatch Service</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-navy-100">
-                        <div class="font-display text-4xl font-bold text-maritime-500 mb-2">22+</div>
-                        <div class="text-xs font-bold text-navy-500 uppercase tracking-wider">Years Experience</div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-4 text-navy-700 font-medium">

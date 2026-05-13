@@ -35,23 +35,14 @@
     <!-- Stats Strip -->
     <section class="bg-navy-950 py-0">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+            <?php $displayStats = array_slice($stats ?? [], 0, 4); ?>
+            <div class="grid grid-cols-2 md:grid-cols-<?= count($displayStats) ?: 4 ?> divide-x divide-white/10">
+                <?php foreach ($displayStats as $st): ?>
                 <div class="px-4 md:px-8 py-8 md:py-10 text-center border-b border-white/10 md:border-b-0">
-                    <div class="font-display text-3xl md:text-4xl font-bold text-white mb-1">22<span class="text-blue-400">+</span></div>
-                    <div class="text-navy-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Years Active</div>
+                    <div class="font-display text-3xl md:text-4xl font-bold text-white mb-1"><?= esc($st['value']) ?></div>
+                    <div class="text-navy-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1"><?= esc($st['label']) ?></div>
                 </div>
-                <div class="px-4 md:px-8 py-8 md:py-10 text-center border-b border-white/10 md:border-b-0">
-                    <div class="font-display text-3xl md:text-4xl font-bold text-white mb-1">450<span class="text-blue-400">+</span></div>
-                    <div class="text-navy-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Vessels Under Support</div>
-                </div>
-                <div class="px-4 md:px-8 py-8 md:py-10 text-center">
-                    <div class="font-display text-3xl md:text-4xl font-bold text-white mb-1">50<span class="text-blue-400">+</span></div>
-                    <div class="text-navy-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Shipping Lines</div>
-                </div>
-                <div class="px-4 md:px-8 py-8 md:py-10 text-center">
-                    <div class="font-display text-3xl md:text-4xl font-bold text-white mb-1">24<span class="text-blue-400">/7</span></div>
-                    <div class="text-navy-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Operational</div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

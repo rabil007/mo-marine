@@ -87,6 +87,22 @@ php_errors.log
 vendor/
 
 #-------------------------
+# Node
+#-------------------------
+node_modules/
+
+#-------------------------
+# Build artifacts
+#-------------------------
+builds/
+public/assets/css/tailwind.css
+
+#-------------------------
+# User uploads (runtime data)
+#-------------------------
+public/uploads/
+
+#-------------------------
 # IDE / Development Files
 #-------------------------
 

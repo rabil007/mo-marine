@@ -130,6 +130,7 @@ $navModules  = [
     ['label' => 'Publications', 'url' => site_url('admin/publications'),  'icon' => 'picture_as_pdf', 'match' => '/admin/publications'],
     ['label' => 'FAQs',         'url' => site_url('admin/faqs'),          'icon' => 'help',           'match' => '/admin/faqs'],
     ['label' => 'Contacts',     'url' => site_url('admin/contacts'),      'icon' => 'inbox',          'match' => '/admin/contacts'],
+    ['label' => 'Stats',        'url' => site_url('admin/stats'),         'icon' => 'bar_chart',      'match' => '/admin/stats'],
     ['label' => 'Settings',     'url' => site_url('admin/settings'),      'icon' => 'tune',           'match' => '/admin/settings'],
 ];
 ?>

@@ -270,23 +270,14 @@
         <div class="absolute inset-0 bg-maritime-600/60 z-10 mix-blend-overlay"></div>
         <div class="absolute inset-0 opacity-20 z-10" style="background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px); background-size: 30px 30px;"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
+            <?php $displayStats = array_slice($stats ?? [], 0, 4); ?>
+            <div class="grid grid-cols-2 md:grid-cols-<?= count($displayStats) ?: 4 ?> gap-8 text-center divide-x divide-white/20">
+                <?php foreach ($displayStats as $st): ?>
                 <div class="px-4">
-                    <div class="font-display text-5xl font-bold text-white mb-2">450<span class="text-blue-300">+</span></div>
-                    <div class="text-blue-100 font-medium uppercase tracking-wider text-sm mt-2">Vessels Under Support</div>
+                    <div class="font-display text-5xl font-bold text-white mb-2"><?= esc($st['value']) ?></div>
+                    <div class="text-blue-100 font-medium uppercase tracking-wider text-sm mt-2"><?= esc($st['label']) ?></div>
                 </div>
-                <div class="px-4">
-                    <div class="font-display text-5xl font-bold text-white mb-2">50<span class="text-blue-300">+</span></div>
-                    <div class="text-blue-100 font-medium uppercase tracking-wider text-sm mt-2">Shipping Lines</div>
-                </div>
-                <div class="px-4">
-                    <div class="font-display text-5xl font-bold text-white mb-2">2,500<span class="text-blue-300">+</span></div>
-                    <div class="text-blue-100 font-medium uppercase tracking-wider text-sm mt-2"> Charts</div>
-                </div>
-                <div class="px-4">
-                    <div class="font-display text-5xl font-bold text-white mb-2">24<span class="text-blue-300">/7</span></div>
-                    <div class="text-blue-100 font-medium uppercase tracking-wider text-sm mt-2">Emergency Support</div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

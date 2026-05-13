@@ -48,4 +48,7 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
 
     $routes->get('admin/settings', 'Admin\Settings::index');
     $routes->post('admin/settings', 'Admin\Settings::update');
+
+    $routes->get('admin/stats', 'Admin\Stats::index');
+    $routes->post('admin/stats', 'Admin\Stats::update');
 });

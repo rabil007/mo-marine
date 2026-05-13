@@ -6,6 +6,7 @@ use App\Models\ContactModel;
 use App\Models\FaqModel;
 use App\Models\PublicationModel;
 use App\Models\SettingsModel;
+use App\Models\StatModel;
 
 class Dashboard extends BaseController
 {
@@ -14,6 +15,7 @@ class Dashboard extends BaseController
         $pubModel     = new PublicationModel();
         $faqModel     = new FaqModel();
         $contactModel = new ContactModel();
+        $statModel    = new StatModel();
         $db           = \Config\Database::connect();
 
         $pubAll    = $pubModel->findAll();
@@ -88,6 +90,8 @@ class Dashboard extends BaseController
 
             'activity_labels'  => $activityLabels,
             'activity_data'    => $activityData,
+
+            'stat_total'       => $statModel->countAll(),
         ]);
     }
 }

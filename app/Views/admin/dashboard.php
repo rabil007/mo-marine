@@ -112,6 +112,23 @@ $maxActivity  = max(max($activity_data), 1);
         </div>
     </a>
 
+    <!-- Stats -->
+    <a href="<?= site_url('admin/stats') ?>" class="stat-card rounded-2xl p-5 block group">
+        <div class="flex items-start justify-between mb-4">
+            <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest">Site Stats</p>
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                 style="background:linear-gradient(135deg,rgba(16,185,129,0.9),rgba(5,150,105,0.7))">
+                <span class="material-symbols-outlined text-white text-[18px]">bar_chart</span>
+            </div>
+        </div>
+        <p class="font-display text-[34px] font-bold text-white leading-none mb-1"><?= $stat_total ?></p>
+        <p class="text-white/30 text-xs mb-3">Stats on website</p>
+        <div class="flex items-center gap-2 pt-3 border-t border-white/5">
+            <span class="material-symbols-outlined text-emerald-400/50 text-[14px]">public</span>
+            <span class="text-white/35 text-[11px]">Shown on homepage &amp; services</span>
+        </div>
+    </a>
+
     <!-- Critical -->
     <div class="stat-card rounded-2xl p-5">
         <div class="flex items-start justify-between mb-4">
@@ -290,6 +307,7 @@ $maxActivity  = max(max($activity_data), 1);
                 [site_url('admin/publications'), 'linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.08))',   'picture_as_pdf', 'text-red-400',    'Publications',        $pub_count  . ' active PDF' . ($pub_count !== 1 ? 's' : '')],
                 [site_url('admin/faqs'),          'linear-gradient(135deg,rgba(14,165,233,0.2),rgba(14,165,233,0.06))', 'help',           'text-sky-400',    'FAQs',                $faq_count  . ' active entr' . ($faq_count !== 1 ? 'ies' : 'y')],
                 [site_url('admin/contacts'),      'linear-gradient(135deg,rgba(14,165,233,0.15),rgba(14,165,233,0.05))','inbox',          'text-sky-400',    'Contact Submissions', $contact_new > 0 ? $contact_new . ' unread' : $contact_total . ' total'],
+                [site_url('admin/stats'),         'linear-gradient(135deg,rgba(16,185,129,0.2),rgba(16,185,129,0.05))',  'bar_chart',      'text-emerald-400','Site Stats',          $stat_total . ' stat' . ($stat_total !== 1 ? 's' : '') . ' on website'],
                 [site_url('admin/settings'),      'linear-gradient(135deg,rgba(245,158,11,0.18),rgba(245,158,11,0.05))','tune',           'text-amber-400',  'Site Settings',       'Phone, social & company'],
             ] as [$url, $bg, $icon, $iconColor, $title, $sub]):
             ?>
