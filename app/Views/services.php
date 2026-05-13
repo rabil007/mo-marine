@@ -193,12 +193,84 @@
                 </div>
             </div>
 
+            <!-- Category: ECDIS Training -->
+            <div class="mb-20" id="ecdis">
+                <div class="flex items-center gap-4 mb-10">
+                    <div class="h-12 w-12 rounded-xl bg-indigo-500 flex items-center justify-center text-white"><span class="material-symbols-outlined">school</span></div>
+                    <div>
+                        <p class="text-xs font-bold tracking-widest text-indigo-500 uppercase">Section 04</p>
+                        <h2 class="font-display text-3xl font-bold text-navy-900">ECDIS Type-Specific Training</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 md:p-12 border border-indigo-100 shadow-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                        <!-- Left: Description -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-indigo-500 text-[20px]">anchor</span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-navy-900">Certified Navigator Training</h3>
+                            </div>
+                            <p class="text-navy-600 leading-relaxed mb-4">
+                                We provide ECDIS type-specific training for all major systems, ensuring deck officers are fully competent in the safe and compliant use of onboard navigation equipment.
+                            </p>
+                            <p class="text-navy-600 leading-relaxed mb-4">
+                                Our training programs are designed in line with IMO and flag state requirements, delivering comprehensive theoretical knowledge and hands-on system operation — fully online.
+                            </p>
+                            <p class="text-navy-600 leading-relaxed mb-6">
+                                Upon successful completion, trainees are issued <span class="text-indigo-600 font-semibold">MCA-approved certificates</span>, confirming compliance with international standards.
+                            </p>
+
+                            <!-- Why it matters -->
+                            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5">
+                                <h4 class="font-bold text-indigo-600 text-sm uppercase tracking-widest mb-3">Why It Matters</h4>
+                                <p class="text-navy-500 text-sm mb-3">Proper ECDIS training is essential for:</p>
+                                <div class="space-y-2">
+                                    <?php foreach (['Safe navigation', 'Regulatory compliance', 'Reducing operational risks'] as $reason): ?>
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0"></span>
+                                        <span class="text-navy-600 text-sm"><?= $reason ?></span>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: What we offer -->
+                        <div>
+                            <h4 class="font-bold text-indigo-600 text-sm uppercase tracking-widest mb-5">What We Offer</h4>
+                            <div class="space-y-3">
+                                <?php foreach ([
+                                    ['school',            'Training for all major ECDIS brands and models'],
+                                    ['verified',          'Type-specific certification in compliance with regulations'],
+                                    ['workspace_premium', 'MCA-approved certification upon completion'],
+                                    ['devices',           'Practical, system-focused learning'],
+                                    ['wifi',              'Online training — accessible from anywhere'],
+                                    ['groups',            'Support for individual officers and fleet-wide requirements'],
+                                ] as [$icon, $text]): ?>
+                                <div class="flex items-start gap-4 bg-navy-50 border border-navy-100 rounded-xl px-4 py-3.5">
+                                    <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined text-indigo-500 text-[16px]"><?= $icon ?></span>
+                                    </div>
+                                    <p class="text-navy-600 text-sm leading-relaxed"><?= $text ?></p>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <p class="text-navy-400 text-sm mt-6 leading-relaxed">We ensure your crew is fully trained, certified, and ready to operate ECDIS systems with confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Category: Nautical Intelligence (The Massive Section) -->
             <div class="mb-20" id="nautical">
                 <div class="flex items-center gap-4 mb-10">
                     <div class="h-12 w-12 rounded-xl bg-cyan-500 flex items-center justify-center text-white"><span class="material-symbols-outlined">map</span></div>
                     <div>
-                        <p class="text-xs font-bold tracking-widest text-cyan-500 uppercase">Section 04</p>
+                        <p class="text-xs font-bold tracking-widest text-cyan-500 uppercase">Section 05</p>
                         <h2 class="font-display text-3xl font-bold text-navy-900">Nautical Intelligence &amp; Digital Services</h2>
                     </div>
                 </div>

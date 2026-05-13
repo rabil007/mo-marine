@@ -22,7 +22,7 @@
                 </h1>
                 
                 <p class="text-lg md:text-xl text-white/70 font-light leading-relaxed mb-10 max-w-2xl opacity-0 animate-fade-in-up stagger-2">
-                    24/7 ship supply, technical response, and port logistics for commercial vessels calling Lattakia and Tartous.
+                    24/7 ship supply, technical response, and port logistics for commercial vessels calling Lattakia, Tartous and Baniyas.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in-up stagger-3">
