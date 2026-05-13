@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li><a href="${routes.logistics}" class="text-navy-300 hover:text-white transition-colors text-sm">Port Logistics & Clearance</a></li>
                         <li><a href="${routes.services}" class="text-navy-300 hover:text-white transition-colors text-sm">Nautical Charts & Publications</a></li>
                         <li><a href="${routes.contact}" class="text-navy-300 hover:text-white transition-colors text-sm">Port Agency Services</a></li>
+                        <li><a href="${routes.services}" class="text-navy-300 hover:text-white transition-colors text-sm">ECDIS Type-Specific Training</a></li>
                     </ul>
                 </div>
                 
