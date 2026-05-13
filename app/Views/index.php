@@ -232,7 +232,7 @@
                 
                 <!-- Step 1 -->
                 <div class="bg-white p-6 md:p-8 rounded-xl border border-navy-100 shadow-sm relative group hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center font-bold text-lg border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg">1</div>
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white grid place-items-center font-bold text-lg leading-[0] border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg"><span>1</span></div>
                     <div class="h-16 w-16 mx-auto bg-navy-50 rounded-full flex items-center justify-center text-maritime-500 mb-6 mt-4 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-[32px]">support_agent</span>
                     </div>
@@ -242,7 +242,7 @@
                 
                 <!-- Step 2 -->
                 <div class="bg-white p-8 rounded-xl border border-navy-100 shadow-sm relative group hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center font-bold text-lg border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg">2</div>
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white grid place-items-center font-bold text-lg leading-[0] border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg"><span>2</span></div>
                     <div class="h-16 w-16 mx-auto bg-navy-50 rounded-full flex items-center justify-center text-maritime-500 mb-6 mt-4 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-[32px]">warehouse</span>
                     </div>
@@ -252,7 +252,7 @@
                 
                 <!-- Step 3 -->
                 <div class="bg-white p-8 rounded-xl border border-navy-100 shadow-sm relative group hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center font-bold text-lg border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg">3</div>
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-navy-900 text-white grid place-items-center font-bold text-lg leading-[0] border-4 border-surface group-hover:bg-maritime-500 transition-colors shadow-lg"><span>3</span></div>
                     <div class="h-16 w-16 mx-auto bg-navy-50 rounded-full flex items-center justify-center text-maritime-500 mb-6 mt-4 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-[32px]">directions_boat</span>
                     </div>

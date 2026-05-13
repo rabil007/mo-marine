@@ -1528,6 +1528,10 @@ input:where([type='file']):focus {
   flex-wrap: wrap;
 }
 
+.place-items-center {
+  place-items: center;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -2765,6 +2769,10 @@ input:where([type='file']):focus {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.leading-\[0\] {
+  line-height: 0;
 }
 
 .tracking-\[0\.12em\] {
