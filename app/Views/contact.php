@@ -135,8 +135,8 @@
                 <!-- Form -->
                 <div id="contact-form" class="bg-white p-6 md:p-10 rounded-2xl shadow-xl shadow-navy-900/5 border border-navy-100 opacity-0 animate-fade-in-up stagger-3">
                     <div class="flex items-center gap-3 mb-8">
-                        <div class="h-12 w-12 rounded-xl bg-navy-900 flex items-center justify-center text-white">
-                            <span class="material-symbols-outlined">send</span>
+                        <div class="h-12 w-12 rounded-xl bg-navy-900 grid place-items-center text-white flex-shrink-0">
+                            <span class="material-symbols-outlined leading-none">send</span>
                         </div>
                         <div>
                             <p class="text-xs font-bold text-navy-400 uppercase tracking-widest">Send a Request</p>
